@@ -43,4 +43,4 @@ This command will process all markdown files in docs folder and generate a stati
 
 ## License
 
-For using ECSP, refer [LICENSE](./LICENSE.md)
+For using ECSP, refer [LICENSE](./LICENSE)
