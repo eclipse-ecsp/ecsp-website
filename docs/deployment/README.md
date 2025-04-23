@@ -124,7 +124,7 @@ Amazon Elastic Kubernetes Service (EKS) Blueprints for Terraform is designed to 
 
 ## Step 1 : Fork/Clone the Repository
 
-Either fork or clone the repository for infrastructure definitions from [AWS](https://github.com/aws-ia/terraform-aws-eks-blueprints/tree/main/patterns/gitops/getting-started-argocd) and [Workloads](https://github.com/eclipse-ecsp/csp-app-of-apps).
+Either fork or clone the repository for infrastructure definitions from [AWS](https://github.com/aws-ia/terraform-aws-eks-blueprints/tree/main/patterns/gitops/getting-started-argocd) and [Workloads](https://github.com/eclipse-ecsp/ecsp-app-of-apps).
 
 Update the terraform variables as required like AWS region, required EKS worker nodes and VPC details in Terraform variables.
 
@@ -242,7 +242,7 @@ We can set up the app as follows:
 ```
 project: default
 source:
-  repoURL: 'https://github.com/eclipse-ecsp/csp-app-of-apps'
+  repoURL: 'https://github.com/eclipse-ecsp/ecsp-app-of-apps'
   path: data-platform
   targetRevision: HEAD
 destination:
@@ -260,7 +260,7 @@ syncPolicy:
 ```
 project: default
 source:
-  repoURL: 'https://github.com/eclipse-ecsp/csp-app-of-apps'
+  repoURL: 'https://github.com/eclipse-ecsp/ecsp-app-of-apps'
   path: uidam
   targetRevision: HEAD
 destination:
@@ -276,7 +276,7 @@ syncPolicy:
 ```
 project: default
 source:
-  repoURL: 'https://github.com/eclipse-ecsp/csp-app-of-apps'
+  repoURL: 'https://github.com/eclipse-ecsp/ecsp-app-of-apps'
   path: csp-services
   targetRevision: HEAD
 destination:
@@ -340,7 +340,7 @@ You must then create a Helm file structure, as shown by the following: [charts r
 
 
 ## Update  app-of-apps
-To deploy the component in Argo CD, we must update the Argo CD App of Apps with the new component chart details in the [repository](https://github.com/eclipse-ecsp/csp-app-of-apps).
+To deploy the component in Argo CD, we must update the Argo CD App of Apps with the new component chart details in the [repository](https://github.com/eclipse-ecsp/ecsp-app-of-apps).
 
 The following App of Apps are grouped logically based on their nature of functionality: 
 
