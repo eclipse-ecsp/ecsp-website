@@ -13,3 +13,13 @@
     width: 5rem;
   }
 }
+
+/* Light mode background */
+[data-md-color-scheme='default'] .gslide-image img {
+  background-color: #ffffff !important; /* Or your desired light background color */
+}
+
+/* Dark mode background */
+[data-md-color-scheme='slate'] .gslide-image img {
+  background-color: #1a1a1a !important; /* Or your desired dark background color */
+}
