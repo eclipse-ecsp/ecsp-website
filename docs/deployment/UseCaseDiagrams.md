@@ -71,8 +71,8 @@ hide:
 
     - Device/Vehicle Creation will be done by admin (OEM) by calling backend api
     - Admin gets oauth token with admin scope from auth server
-    - Admin calls backend api-gw to create a vehicle with necessary vehicle details (eg: serial number, IMEI etc)
-    - Api-gw forwards the requests to Device factory management service which creates the vehicle.
+    - Admin calls backend API Gateway to create a vehicle with necessary vehicle details (eg: serial number, IMEI etc)
+    - API Gateway forwards the requests to Device factory management service which creates the vehicle.
     - Initial state when vehicle created would be, Device State: PROVISIONED and Association Status: NOT ASSOCIATED
     - When vehicle is created, it is considered on-boarded and whitelisted.
 
@@ -101,3 +101,90 @@ hide:
     - When user turns ignition on, vehicle (device client present in vehicle) calls activate api of backend.
     - Device activation backend service will check if Device State is READY_TO_ACTIVATE and Association Status is ASSOCIATION_INITIATED and then activates the vehicle.
     - On Successful activation, at backend, Device State would be ACTIVATED and Association Status would be ASSOCIATED  
+
+=== "Remote Operations"
+
+    ## Remote Operation Overall Flow
+
+    ![Remote Operations Response Flow](images/ro-overall-flow.svg)
+
+    **Pre Condition** - User is logged in to mobile app, vehicle is activated and is provisioned for remote operations.
+
+    - User clicks on the desired Remote Operation in mobile app.
+    - Mobile application calls the corresponding backend api on API Gateway for remote operation.
+    - API Gateway checks whether vehicle has service provisioned for remote operations.
+    - RO Service backend checks the current DB state for requested remote operation and verifies if the request is valid or not.
+    - RO Service, for a valid remote operation request forwards the request to the vehicle through MQTT Channel.
+    - Vehicle sends the response to RO Service through MQTT Channel.
+    - RO Service sends the vehicle response to Notification Service.
+    - Notification Service then forwards the PUSH notification to the mobile app for intimation of Remote Operation status to user. 
+    - Mobile app displays the Remote Operation Completed.
+
+    ## Remote Operation Request Flow
+
+    ![Remote Operations Response Flow](images/ro-request-flow.svg)
+
+    **Pre Condition** - User is logged in to mobile app, vehicle is activated and is provisioned for remote operations.
+
+    - User clicks on the desired Remote Operation in mobile app.
+    - Mobile application calls the corresponding backend api on API Gateway for remote operation.
+    - API Gateway validates parameters and checks if the request is valid.
+    - API Gateway forwards the remote operation request to RO API.
+    - RO API Service backend checks the current DB state for requested remote operation and verifies if the request is valid or not.
+    - For valid request, RO API Service sends the Accepted response back to API Gateway and also forwards the RO event to RO stream processor.
+    - RO stream processor checks if the vehicle is connected, and forwards the RO event to MQTT Broker.
+    - MQTT Broker send RO event to vehicle.
+
+    ## Remote Operations Response Flow
+
+    ![Remote Operations Response Flow](images/remote-operation-response.svg)
+
+    **Pre Condition** - User is logged in to mobile app, vehicle is activated and is provisioned for remote operations and has received the RO command.
+    
+    -  Remote operations like Door opened, door closed etc. are executed successfully in the vehicle and vehicle sends RO Response to RO service via MQTT Channel.
+    - Remote Operation service receives remote operation response then validates if the vehicle is active with user and sends notification to the app.
+    - Notification Center service receives RO response event and then it triggers PUSH notificaiton to the mobile app.
+    - Finally Mobile app receives notification about the remote operation response.
+
+    ## Remote Operations Error Flow
+
+    ### Vehicle Not Provisioned
+
+    ![Remote Operations Response Flow](images/vehicle-error.svg)
+
+    **Pre Condition** - User is logged in to mobile app and vehicle is activated.
+
+    - User clicks on the desired Remote Operation in mobile app.
+    - Mobile application calls the corresponding backend api on RO Service for remote operation.
+    - Vehicle is Not Provisioned for Remote Operations.
+    - Sends Vehicle Not Provisioned response to mobile app.
+    - Mobile app displays that Vehicle Not Provisioned.
+
+    ### RO Service Down
+
+    ![Remote Operations Response Flow](images/service-down.svg)
+
+    **Pre Condition** - User is logged in to mobile app, vehicle is activated and is provisioned for remote operations.
+
+    - User clicks on the desired Remote Operation in mobile app.
+    - Mobile application calls the corresponding backend api on RO Service for remote operation.
+    - Backend RO Service is down.
+    - Mobile app displays that RO Service is down.
+
+    ### Vehicle Not Connected
+
+    ![Remote Operations Response Flow](images/vehicle-not-connected.svg)
+
+    **Pre Condition** - User is logged in to mobile app, vehicle is activated and is provisioned for remote operations.
+
+    - User clicks on the desired Remote Operation in mobile app.
+    - Mobile application calls the corresponding backend api on API Gateway for remote operation.
+    - API Gateway validate parameters and check if request is valid.
+    - API Gateway forwards the remote operation request to RO API.
+    - RO API checks the current DB state for requested remote operation and verifies if the request is valid or not.
+    - For valid request, RO API forwards the RO Event to RO stream processor.
+    - RO stream processor checks if the vehicle is connected.
+    - The vehicle is not connected, RO stream processor will retry multiple times to check if vehicle is connected.
+    - When retry limit is exceeded RO stream processor sends vehicle status as not connected to Notification Service. 
+    - Notification Service sends PUSH notification to mobile app.
+    - Mobile app displays that vehicle is not connected.

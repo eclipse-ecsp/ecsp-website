@@ -31,14 +31,14 @@ Eclipse CSP documentation is stored in GitHub at the following location: <https:
 
 * [**Vehicle Profile**](#available-soon) -  Responsible for creating and maintaining a profile of each vehicle that is on-boarded to the platform. It holds vehicle-specific details and device details (ECUs/IVI/HU) installed on a vehicle, along with capabilities and services provisioned for a vehicle/device combination.
 * [**User Identity and Access Management (UIDAM)**](https://github.com/eclipse-ecsp/uidam-authorization-server) - IDAM Service(s) for OAuth2 implementation
-* [**Device Messaging**](#available-soon) - Responsible for interfacing all communication with the device. Inbound messages are routed via Device Messaging before services process messages. Outgoing messages from services to devices are also routed via Device Messaging. Under the hood, it does tracks the device connection status with HiveMQ, persisting events in database if a vehicle is inactive and waking a device if its inactive.
+* [**Device Message**](#available-soon) - Responsible for sending the configuration to the device whenever there is an update in the configuration. Internal service calls the Device Message API to initiate sending the configuration. The Device Message component sends the configuration to the device using an MQTT channel and the configuration is saved in the Device Shadow collection database. The device client can later retrieve the latest configuration by calling the Device Shadow API also.
 * [**Device Association**](#available-soon) - Associate a device to the user
 * [**Device Activation**](#available-soon) - Move the device into associated state and send a request to create Vehicle Profile
 * [**Device Factory**](#available-soon) - Admin user will manually request to create a new device with required attributes for each vehicle
 
 ##### Security
 
-* **Kubernetes Secrets** - A Kubernetes secret is an object that stores sensitive data, such as passwords, tokens, and keys. This data is used to authenticate and authorize access to applications and services.  z
+* **Kubernetes Secrets** - A Kubernetes secret is an object that stores sensitive data, such as passwords, tokens, and keys. This data is used to authenticate and authorize access to applications and services.
 * **Eclipse Dash** - Eclipse Dash is a place where the community itself collaborates on tools for community awareness and collaboration in support of our ultimate objective of committer quality and cooperation.
 
 ##### Abstraction & Data Handling Service
