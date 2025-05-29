@@ -1,0 +1,3694 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "UIDAM-USER-MANAGEMENT",
+        "description": "This provides uidam-user-management services",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://api-gateway.ecsp.com/"
+        }
+    ],
+    "paths": {
+        "/v1/users/self/settings/{cloudProfileName}/map": {
+            "get": {
+                "tags": [
+                    "end user"
+                ],
+                "summary": "Get my user cloud setting",
+                "description": "Get my user cloud profile data <br /><br />\nAllowed scopes: SelfManage <br />\nETag behavior differs slightly from RFC specifications: <br />\n- No support for list, only 1 ETag at a time <br />\n- No support for '*' value. Either a specific value needs to be used or none at all\n<br>end user-getCloudProfileMap<p style='color:red;'>SCOPE: [SelfManage]</p>",
+                "operationId": "getCloudProfileMap",
+                "parameters": [
+                    {
+                        "name": "If-None-Match",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "X-tenant-id",
+                        "in": "header",
+                        "description": "Tenant ID",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "cloudProfileName",
+                        "in": "path",
+                        "description": "Profile name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "correlationId",
+                        "in": "header",
+                        "description": "Correlation ID",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CloudProfileResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "BAD REQUEST",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CloudProfileResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND. USER OR CLOUD PROFILE WITH BUSINESS KEY DOES NOT EXIST",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CloudProfileResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "INTERNAL SERVER ERROR",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CloudProfileResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "SelfManage"
+                        ]
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "end user"
+                ],
+                "summary": "Create or update a new cloud profile for user",
+                "description": "This API creates a new profile for user or overwrites existing profile if already exists <br /><br />\nAllowed scopes: SelfManage <br />\nETag behavior differs slightly from RFC specifications: <br />\n- No support for list, only 1 ETag at a time <br />\n- No support for '*' value. Either a specific value needs to be used or none at all\n<br>end user-updateCloudProfile<p style='color:red;'>SCOPE: [SelfManage]</p>",
+                "operationId": "updateCloudProfile",
+                "parameters": [
+                    {
+                        "name": "If-None-Match",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "X-tenant-id",
+                        "in": "header",
+                        "description": "Tenant ID",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "cloudProfileName",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "correlationId",
+                        "in": "header",
+                        "description": "Correlation ID",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CloudProfileRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CloudProfileResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "BAD REQUEST",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CloudProfileResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND. USER DOES NOT EXIST",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CloudProfileResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "INTERNAL SERVER ERROR",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CloudProfileResponse"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "CONFLICT - CLOUD PROFILE WITH BUSINESS KEY ALREADY EXISTS",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CloudProfileResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "SelfManage"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "end user"
+                ],
+                "summary": "Delete a cloud profile for user",
+                "description": "Delete a specific profile for the user. <br /><br />\nAllowed scopes: SelfManage <br />\nETag behavior differs slightly from RFC specifications: <br />\n- No support for list, only 1 ETag at a time <br />\n- No support for '*' value. Either a specific value needs to be used or none at all\n<br>end user-deleteCloudProfile<p style='color:red;'>SCOPE: [SelfManage]</p>",
+                "operationId": "deleteCloudProfile",
+                "parameters": [
+                    {
+                        "name": "If-None-Match",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "X-tenant-id",
+                        "in": "header",
+                        "description": "Tenant ID",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "cloudProfileName",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "correlationId",
+                        "in": "header",
+                        "description": "Correlation ID",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CloudProfileResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "BAD REQUEST",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CloudProfileResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND - CLOUD PROFILE ID DOES NOT EXIST",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CloudProfileResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "INTERNAL SERVER ERROR",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CloudProfileResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "SelfManage"
+                        ]
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "end user"
+                ],
+                "summary": "Create or update a new cloud profile for user",
+                "description": "This API creates a new profile for user or updates specific fields in existing profile\nif already exists. <br /><br />\nAllowed scopes: SelfManage <br />\nETag behavior differs slightly from RFC specifications: <br />\n- No support for list, only 1 ETag at a time <br />\n- No support for '*' value. Either a specific value needs to be used or none at all\n<br>end user-editCloudProfile<p style='color:red;'>SCOPE: [SelfManage]</p>",
+                "operationId": "editCloudProfile",
+                "parameters": [
+                    {
+                        "name": "If-None-Match",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "X-tenant-id",
+                        "in": "header",
+                        "description": "Tenant ID",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "cloudProfileName",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "correlationId",
+                        "in": "header",
+                        "description": "Correlation ID",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CloudProfilePatch"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CloudProfileResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "BAD REQUEST",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CloudProfileResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND - CLOUD PROFILE ID DOES NOT EXIST",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CloudProfileResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "INTERNAL SERVER ERROR",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CloudProfileResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "SelfManage"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/users/attributes": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get user attributes",
+                "description": "Get user's entity attributes.<br>users-getUserAttributes<p style='color:red;'>SCOPE: [ViewUsers, ManageUsers]</p>",
+                "operationId": "getUserAttributes",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/UserMetaDataResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ViewUsers",
+                            "ManageUsers"
+                        ]
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Add/Modify additional attributes to user",
+                "description": "Add/Modify additional attributes to user entity.<br>users-putUserAttributes<p style='color:red;'>SCOPE: [ManageUsers]</p>",
+                "operationId": "putUserAttributes",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/UserMetaDataRequest"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/UserMetaDataResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageUsers"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/oauth2/client/{clientId}": {
+            "get": {
+                "tags": [
+                    "client-registration-controller"
+                ],
+                "summary": "Get ClientDetails",
+                "description": "Get registered client details<br>client-registration-controller-getClient<p style='color:red;'>SCOPE: [OAuth2ClientMgmt]</p>",
+                "operationId": "getClient",
+                "parameters": [
+                    {
+                        "name": "clientId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BaseResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "OAuth2ClientMgmt"
+                        ]
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "client-registration-controller"
+                ],
+                "summary": "update client",
+                "description": "update existing client<br>client-registration-controller-updateClient<p style='color:red;'>SCOPE: [OAuth2ClientMgmt]</p>",
+                "operationId": "updateClient",
+                "parameters": [
+                    {
+                        "name": "clientId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisteredClientDetails"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BaseResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "OAuth2ClientMgmt"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "client-registration-controller"
+                ],
+                "summary": "delete client",
+                "description": "delete existing client<br>client-registration-controller-deleteClient<p style='color:red;'>SCOPE: [OAuth2ClientMgmt]</p>",
+                "operationId": "deleteClient",
+                "parameters": [
+                    {
+                        "name": "clientId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BaseResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "OAuth2ClientMgmt"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/users": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Add a new user",
+                "description": "Creates a new user.<br>users-addUser<p style='color:red;'>SCOPE: [ManageUsers]</p>",
+                "operationId": "addUser",
+                "parameters": [
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "description": "user-id",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserDtoV1"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageUsers"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Delete users that match defined criteria",
+                "description": "Delete users that match defined criteria<br>users-deleteUsersByFilter<p style='color:red;'>SCOPE: [ManageUsers]</p>",
+                "operationId": "deleteUsersByFilter",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UsersDeleteFilter"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageUsers"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/users/self/settings": {
+            "get": {
+                "tags": [
+                    "end user"
+                ],
+                "summary": "Get my user cloud profile (setting) names and etags",
+                "description": "Get my user cloud profile names and etags <br /><br />\nAllowed scopes: SelfManage <br />\nETag behavior differs slightly from RFC specifications: <br />\n- No support for list, only 1 ETag at a time <br />\n- No support for '*' value. Either a specific value needs to be used or none at all\n<br>end user-getCloudProfiles<p style='color:red;'>SCOPE: [SelfManage]</p>",
+                "operationId": "getCloudProfiles",
+                "parameters": [
+                    {
+                        "name": "If-None-Match",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "X-tenant-id",
+                        "in": "header",
+                        "description": "Tenant ID",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "correlationId",
+                        "in": "header",
+                        "description": "Correlation ID",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "BAD REQUEST",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND. USER DOES NOT EXIST",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "INTERNAL SERVER ERROR",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "SelfManage"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "cloud-profile-controller"
+                ],
+                "summary": "addCloudProfile api call",
+                "description": " <br>cloud-profile-controller-addCloudProfile<p style='color:red;'> WARNING!! - Security Config Not Found </p>",
+                "operationId": "addCloudProfile",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CloudProfileRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CloudProfileResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/users/filter": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Retrieve users that match defined criteria",
+                "description": "'Retrieves users that match items in the defined list of parameters and values.'  List of parameters can contain dynamic attributes only if they were defined as 'searchable'.<br>users-getUsers<p style='color:red;'>SCOPE: [ViewUsers, ManageUsers]</p>",
+                "operationId": "getUsers",
+                "parameters": [
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": "Page number to retrieve; the first page is 0",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 0
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Number of items to display per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 20
+                        }
+                    },
+                    {
+                        "name": "sortBy",
+                        "in": "query",
+                        "description": "Parameters to sort by",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "IDS",
+                                "USER_NAMES",
+                                "ROLES",
+                                "ROLEIDS",
+                                "ACCOUNTIDS",
+                                "STATUS",
+                                "FIRST_NAMES",
+                                "LAST_NAMES",
+                                "COUNTRIES",
+                                "STATES",
+                                "CITIES",
+                                "ADDRESS1",
+                                "ADDRESS2",
+                                "POSTAL_CODES",
+                                "PHONE_NUMBERS",
+                                "EMAILS",
+                                "GENDER",
+                                "LOCALES",
+                                "DEV_IDS",
+                                "TIMEZONE",
+                                "BIRTHDATE",
+                                "USERSTATUS"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "sortOrder",
+                        "in": "query",
+                        "description": "Sort in ascending (ASC) or descending (DESC) order; default: descending",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "DESC",
+                                "ASC"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "ignoreCase",
+                        "in": "query",
+                        "description": "Ignore case, true or false",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "true",
+                                "false"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "searchType",
+                        "in": "query",
+                        "description": "Search type, CONTAINS, PREFIX or SUFFIX",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PREFIX",
+                                "SUFFIX",
+                                "CONTAINS"
+                            ]
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ViewUsers",
+                            "ManageUsers"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/users/external": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Add a new external user",
+                "description": "Creates a new external user.<br>users-addExternalUser<p style='color:red;'>SCOPE: [ManageUsers]</p>",
+                "operationId": "addExternalUser",
+                "parameters": [
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "description": "user-id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserDtoV1"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageUsers"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/scopes": {
+            "post": {
+                "tags": [
+                    "scopes-controller"
+                ],
+                "summary": "Create New Scope",
+                "description": "Create a new scope<br>scopes-controller-createScope<p style='color:red;'>SCOPE: [ManageUserRolesAndPermissions]</p>",
+                "operationId": "createScope",
+                "parameters": [
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "scope",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ScopeDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ScopeListRepresentation"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageUserRolesAndPermissions"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/scopes/filter": {
+            "post": {
+                "tags": [
+                    "scopes-controller"
+                ],
+                "summary": "Filter Scope",
+                "description": "Filter scope details<br>scopes-controller-filterScopes<p style='color:red;'>SCOPE: [ManageUserRolesAndPermissions]</p>",
+                "operationId": "filterScopes",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 0
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 20
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ScopesFilterRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ScopeListRepresentation"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageUserRolesAndPermissions"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/roles": {
+            "post": {
+                "tags": [
+                    "roles-controller"
+                ],
+                "summary": "Create Role",
+                "description": "Create a new role<br>roles-controller-createRole<p style='color:red;'>SCOPE: [ManageUserRolesAndPermissions]</p>",
+                "operationId": "createRole",
+                "parameters": [
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "scope",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RolesCreateRequestDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/RoleListRepresentation"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageUserRolesAndPermissions"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/roles/rolesById": {
+            "post": {
+                "tags": [
+                    "roles-controller"
+                ],
+                "summary": "Get Role By Id",
+                "description": "Get role information by role id<br>roles-controller-getRoleById<p style='color:red;'>SCOPE: [ManageUserRolesAndPermissions]</p>",
+                "operationId": "getRoleById",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RoleIdRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/RoleListRepresentation"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageUserRolesAndPermissions"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/roles/filter": {
+            "post": {
+                "tags": [
+                    "roles-controller"
+                ],
+                "summary": "Filter Role",
+                "description": "Get multiple roles information by role names<br>roles-controller-filterRoles<p style='color:red;'>SCOPE: [ManageUserRolesAndPermissions]</p>",
+                "operationId": "filterRoles",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 0
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 20
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RolesFilterRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/RoleListRepresentation"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageUserRolesAndPermissions"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/oauth2/client": {
+            "post": {
+                "tags": [
+                    "client-registration-controller"
+                ],
+                "summary": "Create client",
+                "description": "register a new client<br>client-registration-controller-createClient<p style='color:red;'>SCOPE: [OAuth2ClientMgmt]</p>",
+                "operationId": "createClient",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisteredClientDetails"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BaseResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "OAuth2ClientMgmt"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/accounts": {
+            "post": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "Create a new account",
+                "description": "Creates a new Account.<br>account-createAccount<p style='color:red;'>SCOPE: [ManageAccounts]</p>",
+                "operationId": "createAccount",
+                "parameters": [
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "description": "user-id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "correlationId",
+                        "in": "header",
+                        "description": "Correlation ID",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateAccountDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CreateAccountResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageAccounts"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/accounts/{account_id}": {
+            "get": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "Get account details",
+                "description": "Gets the account identified by its ID<br>account-getAccount<p style='color:red;'>SCOPE: [ViewAccounts, ManageAccounts]</p>",
+                "operationId": "getAccount",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "path",
+                        "description": "Account ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "correlationId",
+                        "in": "header",
+                        "description": "Correlation ID",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "description": "user-id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetAccountApiResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ViewAccounts",
+                            "ManageAccounts"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "Update an existing account",
+                "description": "Update an existing account<br>account-updateAccount<p style='color:red;'>SCOPE: [ManageAccounts]</p>",
+                "operationId": "updateAccount",
+                "parameters": [
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "description": "user-id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "account_id",
+                        "in": "path",
+                        "description": "Account id",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "correlationId",
+                        "in": "header",
+                        "description": "Correlation ID",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateAccountDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageAccounts"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "Delete an existing account",
+                "description": "Account must not be default and no users associated<br>account-deleteAccount<p style='color:red;'>SCOPE: [ManageAccounts]</p>",
+                "operationId": "deleteAccount",
+                "parameters": [
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "description": "user-id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "account_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "correlationId",
+                        "in": "header",
+                        "description": "Correlation ID",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageAccounts"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/accounts/filter": {
+            "post": {
+                "tags": [
+                    "account"
+                ],
+                "summary": "Retrieve accounts that match the defined criteria",
+                "description": "Retrieves Accounts that match items in the defined list of parameters and values.<br>account-filterAccounts<p style='color:red;'>SCOPE: [ViewAccounts, ManageAccounts]</p>",
+                "operationId": "filterAccounts",
+                "parameters": [
+                    {
+                        "name": "sortBy",
+                        "in": "query",
+                        "description": "Parameters to sort by",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "IDS",
+                                "ACCOUNT_NAMES",
+                                "PARENTIDS",
+                                "ROLES",
+                                "STATUS"
+                            ],
+                            "default": "ACCOUNT_NAMES"
+                        }
+                    },
+                    {
+                        "name": "sortOrder",
+                        "in": "query",
+                        "description": "Sort in ascending (ASC) or descending (DESC) order; default: descending",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "DESC",
+                                "ASC"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "ignoreCase",
+                        "in": "query",
+                        "description": "Ignore case, true or false",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "true",
+                                "false"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "searchMode",
+                        "in": "query",
+                        "description": "Search type, CONTAINS, PREFIX, SUFFIX or EQUAL",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PREFIX",
+                                "SUFFIX",
+                                "CONTAINS",
+                                "EQUAL"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "description": "user-id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "correlationId",
+                        "in": "header",
+                        "description": "Correlation ID",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AccountFilterDto"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/GetAccountApiResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ViewAccounts",
+                            "ManageAccounts"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/users/{id}": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get a user",
+                "description": "Gets a single user identified by its ID<br>users-getUser<p style='color:red;'>SCOPE: [ViewUsers, ManageUsers]</p>",
+                "operationId": "getUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ViewUsers",
+                            "ManageUsers"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Delete a user",
+                "description": "Deletes a single user identified by its ID<br>users-deleteUser<p style='color:red;'>SCOPE: [ManageUsers]</p>",
+                "operationId": "deleteUser",
+                "parameters": [
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "description": "user-id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "external_user",
+                        "in": "header",
+                        "description": "external_user",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageUsers"
+                        ]
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Update a user",
+                "description": "Updates a single user identified by its ID<br>users-editUser<p style='color:red;'>SCOPE: [ManageUsers]</p>",
+                "operationId": "editUser",
+                "parameters": [
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "description": "user-id",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PatchMap"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageUsers"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/users/status": {
+            "patch": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Change user status",
+                "description": "Change status for users.<br>users-changeUserStatus<p style='color:red;'>SCOPE: [ManageUsers]</p>",
+                "operationId": "changeUserStatus",
+                "parameters": [
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "description": "user-id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserChangeStatusRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageUsers"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/users/self": {
+            "get": {
+                "tags": [
+                    "end user"
+                ],
+                "summary": "Get my user data",
+                "description": "Get my user data<br>end user-getSelfUser<p style='color:red;'>SCOPE: [SelfManage]</p>",
+                "operationId": "getSelfUser",
+                "parameters": [
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "description": "user-id",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "SelfManage"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "end user"
+                ],
+                "summary": "Delete my own user",
+                "description": "Delete my own user<br>end user-deleteSelfUser<p style='color:red;'>SCOPE: [SelfManage]</p>",
+                "operationId": "deleteSelfUser",
+                "parameters": [
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "description": "user-id",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "external_user",
+                        "in": "header",
+                        "description": "external_user",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "SelfManage"
+                        ]
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "end user"
+                ],
+                "summary": "Update logged in user.",
+                "description": "Update logged in user.<br>end user-editSelfUser<p style='color:red;'>SCOPE: [SelfManage]</p>",
+                "operationId": "editSelfUser",
+                "parameters": [
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "description": "user-id",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PatchMap"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "SelfManage"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/scopes/{name}": {
+            "get": {
+                "tags": [
+                    "scopes-controller"
+                ],
+                "summary": "Get Scope",
+                "description": "Get scope details<br>scopes-controller-getScope<p style='color:red;'>SCOPE: [ManageUserRolesAndPermissions]</p>",
+                "operationId": "getScope",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ScopeListRepresentation"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageUserRolesAndPermissions"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "scopes-controller"
+                ],
+                "summary": "Delete Scope",
+                "description": "Delete scope<br>scopes-controller-deleteScope<p style='color:red;'>SCOPE: [ManageUserRolesAndPermissions]</p>",
+                "operationId": "deleteScope",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "scope",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ScopeListRepresentation"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageUserRolesAndPermissions"
+                        ]
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "scopes-controller"
+                ],
+                "summary": "Update Scope",
+                "description": "Update scope details<br>scopes-controller-updateScope<p style='color:red;'>SCOPE: [ManageUserRolesAndPermissions]</p>",
+                "operationId": "updateScope",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "scope",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ScopePatch"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ScopeListRepresentation"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageUserRolesAndPermissions"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/roles/{name}": {
+            "get": {
+                "tags": [
+                    "roles-controller"
+                ],
+                "summary": "Get Role By Name",
+                "description": "Get role information by role name<br>roles-controller-getRole<p style='color:red;'>SCOPE: [ManageUserRolesAndPermissions]</p>",
+                "operationId": "getRole",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/RoleListRepresentation"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageUserRolesAndPermissions"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "roles-controller"
+                ],
+                "summary": "Delete Role",
+                "description": "Deletes a single role using its unique name.<br>roles-controller-deleteRole<p style='color:red;'>SCOPE: [ManageUserRolesAndPermissions]</p>",
+                "operationId": "deleteRole",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "scope",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/RoleListRepresentation"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageUserRolesAndPermissions"
+                        ]
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "roles-controller"
+                ],
+                "summary": "Update Role",
+                "description": "Update existing role details<br>roles-controller-updateRole<p style='color:red;'>SCOPE: [ManageUserRolesAndPermissions]</p>",
+                "operationId": "updateRole",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "scope",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RolePatch"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/RoleListRepresentation"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageUserRolesAndPermissions"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/users/self/settings/{cloudProfileName}": {
+            "get": {
+                "tags": [
+                    "end user"
+                ],
+                "summary": "Get my user cloud profile (setting) etag",
+                "description": "Get my user cloud profile etag in response body <br /><br />\nAllowed scopes: SelfManage <br />\nETag behavior differs slightly from RFC specifications: <br />\n- No support for list, only 1 ETag at a time <br />\n- No support for '*' value. Either a specific value needs to be used or none at all\n<br>end user-getCloudProfile<p style='color:red;'>SCOPE: [SelfManage]</p>",
+                "operationId": "getCloudProfile",
+                "parameters": [
+                    {
+                        "name": "If-None-Match",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "X-tenant-id",
+                        "in": "header",
+                        "description": "Tenant ID",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "cloudProfileName",
+                        "in": "path",
+                        "description": "Profile name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "correlationId",
+                        "in": "header",
+                        "description": "Correlation ID",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CloudProfileResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "BAD REQUEST",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND. USER OR CLOUD PROFILE WITH BUSINESS KEY DOES NOT EXIST",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "INTERNAL SERVER ERROR",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "SelfManage"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/users/external/{id}": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get external user",
+                "description": "Gets a single external user identified by its ID.<br>users-getExternalUser<p style='color:red;'>SCOPE: [ViewUsers, ManageUsers]</p>",
+                "operationId": "getExternalUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ViewUsers",
+                            "ManageUsers"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Delete an external user",
+                "description": "Deletes a single external user identified by its ID<br>users-deleteExternalUser<p style='color:red;'>SCOPE: [ManageUsers]</p>",
+                "operationId": "deleteExternalUser",
+                "parameters": [
+                    {
+                        "name": "user-id",
+                        "in": "header",
+                        "description": "user-id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ManageUsers"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/emailVerification/{userId}/isEmailVerified": {
+            "get": {
+                "tags": [
+                    "email"
+                ],
+                "summary": "Get if user email was verified by user id",
+                "description": "Get if user email was verified by user id.<br>email-getIsEmailVerified<p style='color:red;'>SCOPE: [ViewUsers, ManageUsers]</p>",
+                "operationId": "getIsEmailVerified",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "userId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/EmailVerificationResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JwtAuthValidator": [
+                            "ViewUsers",
+                            "ManageUsers"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/v1/emailVerification/{token}": {
+            "get": {
+                "tags": [
+                    "email"
+                ],
+                "summary": "Verify email address via UUID",
+                "description": "API requires only a valid link (i.e. UUID) to validate an email.<br>email-verifyEmail<p style='color:red;'> WARNING!! - Security Config Not Found </p>",
+                "operationId": "verifyEmail",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CloudProfileResponse": {
+                "required": [
+                    "id",
+                    "userId"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "id"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "description": "user id"
+                    },
+                    "cloudProfileName": {
+                        "type": "string",
+                        "description": "profile name"
+                    },
+                    "cloudProfileData": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object",
+                            "description": "cloud profile"
+                        },
+                        "description": "cloud profile"
+                    }
+                }
+            },
+            "CloudProfileRequest": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "string",
+                        "description": "User ID.",
+                        "format": "uuid"
+                    },
+                    "cloudProfileName": {
+                        "maxLength": 49,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Cloud profile name. Maximum length = 49 chars",
+                        "example": "userProfile"
+                    },
+                    "cloudProfileData": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object",
+                            "description": "cloud profile"
+                        },
+                        "description": "cloud profile"
+                    }
+                },
+                "description": "Parameters that define a cloud profile"
+            },
+            "UserMetaDataRequest": {
+                "required": [
+                    "name"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "maxLength": 79,
+                        "minLength": 1,
+                        "pattern": "^[^_][a-z,A-Z,0-9_]{1,79}$",
+                        "type": "string",
+                        "description": "name",
+                        "example": "isMarried"
+                    },
+                    "mandatory": {
+                        "type": "boolean",
+                        "description": "mandatory",
+                        "example": false
+                    },
+                    "unique": {
+                        "type": "boolean",
+                        "description": "unique",
+                        "example": false
+                    },
+                    "readOnly": {
+                        "type": "boolean",
+                        "description": "readOnly",
+                        "example": false
+                    },
+                    "searchable": {
+                        "type": "boolean",
+                        "description": "searchable",
+                        "example": true
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "type",
+                        "example": "varchar"
+                    },
+                    "regex": {
+                        "type": "string",
+                        "description": "regex",
+                        "example": "[a-zA-Z]{1,13}"
+                    }
+                }
+            },
+            "UserMetaDataResponse": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "mandatory": {
+                        "type": "boolean"
+                    },
+                    "unique": {
+                        "type": "boolean"
+                    },
+                    "readOnly": {
+                        "type": "boolean"
+                    },
+                    "searchable": {
+                        "type": "boolean"
+                    },
+                    "dynamicAttribute": {
+                        "type": "boolean"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "regex": {
+                        "type": "string"
+                    }
+                }
+            },
+            "BaseResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "object"
+                    },
+                    "httpStatus": {
+                        "type": "string",
+                        "enum": [
+                            "100 CONTINUE",
+                            "101 SWITCHING_PROTOCOLS",
+                            "102 PROCESSING",
+                            "103 EARLY_HINTS",
+                            "103 CHECKPOINT",
+                            "200 OK",
+                            "201 CREATED",
+                            "202 ACCEPTED",
+                            "203 NON_AUTHORITATIVE_INFORMATION",
+                            "204 NO_CONTENT",
+                            "205 RESET_CONTENT",
+                            "206 PARTIAL_CONTENT",
+                            "207 MULTI_STATUS",
+                            "208 ALREADY_REPORTED",
+                            "226 IM_USED",
+                            "300 MULTIPLE_CHOICES",
+                            "301 MOVED_PERMANENTLY",
+                            "302 FOUND",
+                            "302 MOVED_TEMPORARILY",
+                            "303 SEE_OTHER",
+                            "304 NOT_MODIFIED",
+                            "305 USE_PROXY",
+                            "307 TEMPORARY_REDIRECT",
+                            "308 PERMANENT_REDIRECT",
+                            "400 BAD_REQUEST",
+                            "401 UNAUTHORIZED",
+                            "402 PAYMENT_REQUIRED",
+                            "403 FORBIDDEN",
+                            "404 NOT_FOUND",
+                            "405 METHOD_NOT_ALLOWED",
+                            "406 NOT_ACCEPTABLE",
+                            "407 PROXY_AUTHENTICATION_REQUIRED",
+                            "408 REQUEST_TIMEOUT",
+                            "409 CONFLICT",
+                            "410 GONE",
+                            "411 LENGTH_REQUIRED",
+                            "412 PRECONDITION_FAILED",
+                            "413 PAYLOAD_TOO_LARGE",
+                            "413 REQUEST_ENTITY_TOO_LARGE",
+                            "414 URI_TOO_LONG",
+                            "414 REQUEST_URI_TOO_LONG",
+                            "415 UNSUPPORTED_MEDIA_TYPE",
+                            "416 REQUESTED_RANGE_NOT_SATISFIABLE",
+                            "417 EXPECTATION_FAILED",
+                            "418 I_AM_A_TEAPOT",
+                            "419 INSUFFICIENT_SPACE_ON_RESOURCE",
+                            "420 METHOD_FAILURE",
+                            "421 DESTINATION_LOCKED",
+                            "422 UNPROCESSABLE_ENTITY",
+                            "423 LOCKED",
+                            "424 FAILED_DEPENDENCY",
+                            "425 TOO_EARLY",
+                            "426 UPGRADE_REQUIRED",
+                            "428 PRECONDITION_REQUIRED",
+                            "429 TOO_MANY_REQUESTS",
+                            "431 REQUEST_HEADER_FIELDS_TOO_LARGE",
+                            "451 UNAVAILABLE_FOR_LEGAL_REASONS",
+                            "500 INTERNAL_SERVER_ERROR",
+                            "501 NOT_IMPLEMENTED",
+                            "502 BAD_GATEWAY",
+                            "503 SERVICE_UNAVAILABLE",
+                            "504 GATEWAY_TIMEOUT",
+                            "505 HTTP_VERSION_NOT_SUPPORTED",
+                            "506 VARIANT_ALSO_NEGOTIATES",
+                            "507 INSUFFICIENT_STORAGE",
+                            "508 LOOP_DETECTED",
+                            "509 BANDWIDTH_LIMIT_EXCEEDED",
+                            "510 NOT_EXTENDED",
+                            "511 NETWORK_AUTHENTICATION_REQUIRED"
+                        ]
+                    }
+                }
+            },
+            "RegisteredClientDetails": {
+                "type": "object",
+                "properties": {
+                    "clientId": {
+                        "type": "string"
+                    },
+                    "clientSecret": {
+                        "type": "string"
+                    },
+                    "clientName": {
+                        "type": "string"
+                    },
+                    "clientAuthenticationMethods": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "authorizationGrantTypes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "redirectUris": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "scopes": {
+                        "uniqueItems": true,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "accessTokenValidity": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "refreshTokenValidity": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "authorizationCodeValidity": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "additionalInformation": {
+                        "type": "string"
+                    },
+                    "requireAuthorizationConsent": {
+                        "type": "boolean"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "requestedBy": {
+                        "type": "string"
+                    }
+                }
+            },
+            "UserDtoV1": {
+                "required": [
+                    "is_external_user",
+                    "roles",
+                    "userName"
+                ],
+                "type": "object",
+                "properties": {
+                    "firstName": {
+                        "maxLength": 49,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "First name. Maximum length = 49 chars",
+                        "example": "John"
+                    },
+                    "lastName": {
+                        "maxLength": 49,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Last name. Maximum length = 49 chars",
+                        "example": "Doe"
+                    },
+                    "country": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Country. Maximum length = 50 chars",
+                        "example": "USA"
+                    },
+                    "state": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "State. Maximum length = 50 chars",
+                        "example": "Illinois"
+                    },
+                    "city": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "City. Maximum length = 50 chars",
+                        "example": "Chicago"
+                    },
+                    "address1": {
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Address. Maximum length = 50 chars",
+                        "example": "5801"
+                    },
+                    "address2": {
+                        "maxLength": 100,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Address. Maximum length = 100 chars",
+                        "example": "S Ellis Ave"
+                    },
+                    "postalCode": {
+                        "maxLength": 11,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Postal Code. Maximum length = 11 chars",
+                        "example": "560068"
+                    },
+                    "phoneNumber": {
+                        "pattern": "^\\+[0-9]{3,14}[0-9]$",
+                        "type": "string",
+                        "description": "Phone number. Minimum length = 5, Maximum length = 16 chars",
+                        "example": "+17535011234"
+                    },
+                    "email": {
+                        "maxLength": 128,
+                        "minLength": 3,
+                        "type": "string",
+                        "description": "Email address. Minimum length = 3, Maximum length = 128 chars",
+                        "example": "john.doe@domain.com"
+                    },
+                    "gender": {
+                        "type": "string",
+                        "description": "Gender",
+                        "enum": [
+                            "MALE",
+                            "FEMALE"
+                        ]
+                    },
+                    "birthDate": {
+                        "type": "string",
+                        "description": "Birth Date in ISO 8601 format (yyyy-MM-dd)",
+                        "format": "date",
+                        "example": "1997-10-13"
+                    },
+                    "locale": {
+                        "maxLength": 35,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Locale. Maximum length = 35 chars",
+                        "example": "en_US"
+                    },
+                    "notificationConsent": {
+                        "type": "boolean",
+                        "description": "did the user approve to receive notifications",
+                        "example": true
+                    },
+                    "timeZone": {
+                        "type": "string",
+                        "description": "IST",
+                        "example": "IST"
+                    },
+                    "userName": {
+                        "maxLength": 254,
+                        "minLength": 1,
+                        "pattern": "[^\\\\!()*~<>'\\\",:;\\s${}|+?%]{1,254}$",
+                        "type": "string",
+                        "description": "Username. Maximum length = 254 chars",
+                        "example": "johnd"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "\n\r User password. Password length should be between 6 to 80 chars and must use at least three of the four available character types: lowercase letters, uppercase letters, numbers, and any character from the following list: \n\n\r ** &#124;#$%&'()*+,-./:;<=>?@[]^_`{}~ **",
+                        "example": "Aa1234"
+                    },
+                    "aud": {
+                        "type": "string",
+                        "description": "Client_Id/ AUD.",
+                        "example": "k8-qa-dmportal"
+                    },
+                    "roles": {
+                        "uniqueItems": true,
+                        "type": "array",
+                        "description": "Role. Allowed values are: [VEHICLE_OWNER, OEM_ADMIN, BUSINESS_ADMIN] or one of the defined custom roles",
+                        "example": [
+                            "VEHICLE_OWNER"
+                        ],
+                        "items": {
+                            "type": "string",
+                            "description": "Role. Allowed values are: [VEHICLE_OWNER, OEM_ADMIN, BUSINESS_ADMIN] or one of the defined custom roles",
+                            "example": "[\"VEHICLE_OWNER\"]"
+                        }
+                    },
+                    "is_external_user": {
+                        "type": "boolean",
+                        "description": "User is External or not. Allowed values are: [true, false]",
+                        "example": false
+                    }
+                },
+                "description": "Parameters that define a single external user"
+            },
+            "ResponseMessage": {
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "type": "string",
+                        "description": "key, a string which indicate the result type",
+                        "example": "success.key"
+                    },
+                    "parameters": {
+                        "type": "array",
+                        "description": "parameters, data relevant to the message",
+                        "items": {
+                            "type": "object",
+                            "description": "parameters, data relevant to the message"
+                        }
+                    }
+                }
+            },
+            "Scope": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "administrative": {
+                        "type": "boolean"
+                    },
+                    "predefined": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "ScopeListRepresentation": {
+                "type": "object",
+                "properties": {
+                    "messages": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ResponseMessage"
+                        }
+                    },
+                    "results": {
+                        "uniqueItems": true,
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Scope"
+                        }
+                    }
+                }
+            },
+            "ScopeDto": {
+                "required": [
+                    "administrative",
+                    "description",
+                    "name"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "administrative": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "ScopesFilterRequest": {
+                "required": [
+                    "scopes"
+                ],
+                "type": "object",
+                "properties": {
+                    "scopes": {
+                        "uniqueItems": true,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "RoleCreateResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "scopes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Scope"
+                        }
+                    }
+                }
+            },
+            "RoleListRepresentation": {
+                "type": "object",
+                "properties": {
+                    "messages": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ResponseMessage"
+                        }
+                    },
+                    "results": {
+                        "uniqueItems": true,
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RoleCreateResponse"
+                        }
+                    }
+                }
+            },
+            "RolesCreateRequestDto": {
+                "required": [
+                    "description",
+                    "name",
+                    "scopeNames"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "scopeNames": {
+                        "uniqueItems": true,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "RoleIdRequest": {
+                "required": [
+                    "roleId"
+                ],
+                "type": "object",
+                "properties": {
+                    "roleId": {
+                        "uniqueItems": true,
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                }
+            },
+            "RolesFilterRequest": {
+                "required": [
+                    "roles"
+                ],
+                "type": "object",
+                "properties": {
+                    "roles": {
+                        "uniqueItems": true,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "CreateAccountResponse": {
+                "required": [
+                    "id"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "account id"
+                    }
+                }
+            },
+            "CreateAccountDto": {
+                "required": [
+                    "accountName"
+                ],
+                "type": "object",
+                "properties": {
+                    "parentId": {
+                        "type": "string",
+                        "description": "Parent ID of the account",
+                        "example": "1"
+                    },
+                    "roles": {
+                        "uniqueItems": true,
+                        "type": "array",
+                        "description": "Role. Allowed values are: [VEHICLE_OWNER, OEM_ADMIN, BUSINESS_ADMIN] or one of the defined custom roles",
+                        "example": [
+                            "TENANT_ADMIN"
+                        ],
+                        "items": {
+                            "type": "string",
+                            "description": "Role. Allowed values are: [VEHICLE_OWNER, OEM_ADMIN, BUSINESS_ADMIN] or one of the defined custom roles",
+                            "example": "[\"TENANT_ADMIN\"]"
+                        }
+                    },
+                    "accountName": {
+                        "maxLength": 254,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "Account name. Maximum length is 254 chars",
+                        "example": "sampleAccount"
+                    }
+                },
+                "description": "Parameters that define a single account"
+            },
+            "UpdateAccountDto": {
+                "required": [
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "parentId": {
+                        "type": "string",
+                        "description": "Parent ID of the account",
+                        "example": "1"
+                    },
+                    "roles": {
+                        "uniqueItems": true,
+                        "type": "array",
+                        "description": "Role. Allowed values are: [VEHICLE_OWNER, OEM_ADMIN, BUSINESS_ADMIN] or one of the defined custom roles",
+                        "example": [
+                            "TENANT_ADMIN"
+                        ],
+                        "items": {
+                            "type": "string",
+                            "description": "Role. Allowed values are: [VEHICLE_OWNER, OEM_ADMIN, BUSINESS_ADMIN] or one of the defined custom roles",
+                            "example": "[\"TENANT_ADMIN\"]"
+                        }
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Status. Allowed values are: [PENDING, REJECTED, ACTIVE, DEACTIVATED]",
+                        "example": "PENDING",
+                        "enum": [
+                            "PENDING",
+                            "ACTIVE",
+                            "SUSPENDED",
+                            "BLOCKED",
+                            "DELETED"
+                        ]
+                    }
+                },
+                "description": "Parameters that updates an account"
+            },
+            "GetAccountApiResponse": {
+                "required": [
+                    "accountName",
+                    "createDate",
+                    "createdBy",
+                    "id",
+                    "roles",
+                    "status"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "account id"
+                    },
+                    "accountName": {
+                        "type": "string",
+                        "description": "account name"
+                    },
+                    "parentId": {
+                        "type": "string",
+                        "description": "parent id"
+                    },
+                    "roles": {
+                        "uniqueItems": true,
+                        "type": "array",
+                        "description": "roles",
+                        "items": {
+                            "type": "string",
+                            "description": "roles"
+                        }
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "status",
+                        "enum": [
+                            "PENDING",
+                            "ACTIVE",
+                            "SUSPENDED",
+                            "BLOCKED",
+                            "DELETED"
+                        ]
+                    },
+                    "createdBy": {
+                        "type": "string",
+                        "description": "account creation user"
+                    },
+                    "createDate": {
+                        "type": "string",
+                        "description": "account creation timestamp",
+                        "format": "date-time"
+                    },
+                    "updatedBy": {
+                        "type": "string",
+                        "description": "last updated user"
+                    },
+                    "updateDate": {
+                        "type": "string",
+                        "description": "timestamp of latest account update",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "AccountFilterDto": {
+                "type": "object",
+                "properties": {
+                    "ids": {
+                        "maxItems": 50,
+                        "minItems": 1,
+                        "uniqueItems": true,
+                        "type": "array",
+                        "description": "List of Account IDs",
+                        "items": {
+                            "type": "string",
+                            "description": "List of Account IDs",
+                            "format": "uuid"
+                        }
+                    },
+                    "accountNames": {
+                        "maxItems": 50,
+                        "minItems": 1,
+                        "uniqueItems": true,
+                        "type": "array",
+                        "description": "List of Account Names",
+                        "items": {
+                            "maxLength": 254,
+                            "minLength": 1,
+                            "type": "string",
+                            "description": "List of Account Names"
+                        }
+                    },
+                    "parentIds": {
+                        "maxItems": 50,
+                        "minItems": 1,
+                        "uniqueItems": true,
+                        "type": "array",
+                        "description": "List of Parent Ids",
+                        "items": {
+                            "type": "string",
+                            "description": "List of Parent Ids",
+                            "format": "uuid"
+                        }
+                    },
+                    "roles": {
+                        "maxItems": 50,
+                        "minItems": 1,
+                        "uniqueItems": true,
+                        "type": "array",
+                        "description": "List of Account roles",
+                        "items": {
+                            "maxLength": 49,
+                            "minLength": 1,
+                            "pattern": "[A-Za-z_-]+",
+                            "type": "string",
+                            "description": "List of Account roles"
+                        }
+                    },
+                    "status": {
+                        "maxItems": 50,
+                        "minItems": 1,
+                        "uniqueItems": true,
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "PENDING",
+                                "ACTIVE",
+                                "SUSPENDED",
+                                "BLOCKED",
+                                "DELETED"
+                            ]
+                        }
+                    }
+                },
+                "description": "Parameters and values by which to filter. Leave empty to get all active accounts."
+            },
+            "PatchMap": {
+                "type": "object",
+                "properties": {
+                    "empty": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": {
+                    "type": "object"
+                },
+                "description": "Parameters that update a single user"
+            },
+            "UserChangeStatusRequest": {
+                "required": [
+                    "ids"
+                ],
+                "type": "object",
+                "properties": {
+                    "ids": {
+                        "maxItems": 50,
+                        "minItems": 1,
+                        "uniqueItems": true,
+                        "type": "array",
+                        "description": "List of user IDs.",
+                        "items": {
+                            "type": "string",
+                            "description": "List of user IDs.",
+                            "format": "uuid"
+                        }
+                    },
+                    "approved": {
+                        "type": "boolean"
+                    }
+                },
+                "description": "Parameters that update users status"
+            },
+            "CloudProfilePatch": {
+                "type": "object",
+                "properties": {
+                    "cloudProfileData": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object",
+                            "description": "cloud profile"
+                        },
+                        "description": "cloud profile"
+                    }
+                },
+                "description": "Parameters that define a cloud profile"
+            },
+            "ScopePatch": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "administrative": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "RolePatch": {
+                "required": [
+                    "scopeNames"
+                ],
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "scopeNames": {
+                        "uniqueItems": true,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "EmailVerificationResponse": {
+                "required": [
+                    "id",
+                    "isVerified",
+                    "token",
+                    "updateTime",
+                    "userId"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "id",
+                        "example": "20190977-4ec3-4875-bb08-391211341045"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "description": "userId",
+                        "example": "6f452624-c4e3-40ff-ba29-fe9082705f50"
+                    },
+                    "token": {
+                        "type": "string",
+                        "description": "token",
+                        "example": "bsavshfafsjasa"
+                    },
+                    "updateTime": {
+                        "type": "integer",
+                        "description": "updateTime",
+                        "format": "int64",
+                        "example": 1900681
+                    },
+                    "isVerified": {
+                        "type": "boolean",
+                        "description": "isVerified",
+                        "example": false
+                    }
+                }
+            },
+            "UsersDeleteFilter": {
+                "type": "object",
+                "properties": {
+                    "ids": {
+                        "maxItems": 50,
+                        "minItems": 1,
+                        "uniqueItems": true,
+                        "type": "array",
+                        "description": "List of user IDs",
+                        "items": {
+                            "type": "string",
+                            "description": "List of user IDs",
+                            "format": "uuid"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

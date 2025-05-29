@@ -1,0 +1,1211 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="deployment/UseCaseDiagrams/">
+      
+      
+      <link rel="icon" href="images/CSP logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Introduction - Eclipse Connected Services Platform (ECSP)</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#csp-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Eclipse Connected Services Platform (ECSP)" class="md-header__button md-logo" aria-label="Eclipse Connected Services Platform (ECSP)" data-md-component="logo">
+      
+  <img src="images/CSP logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Eclipse Connected Services Platform (ECSP)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Eclipse Connected Services Platform (ECSP)" class="md-nav__button md-logo" aria-label="Eclipse Connected Services Platform (ECSP)" data-md-component="logo">
+      
+  <img src="images/CSP logo.svg" alt="logo">
+
+    </a>
+    Eclipse Connected Services Platform (ECSP)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Get started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Get started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Diagram
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram Details
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagram Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#offboard-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Offboard Layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Offboard Layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uxmobile-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      UX/Mobile SDK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Business Application
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-platform-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Platform Services
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abstraction-data-handling-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Abstraction &amp; Data Handling Service
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Abstraction &amp; Data Handling Service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-abstraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Abstraction
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud-its-infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud &amp; its Infrastructure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cloud &amp; its Infrastructure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Stream
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backend Interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infra-and-cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Infra and CI/CD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboard-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Onboard Layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Onboard Layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#device-its-infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Device &amp; its Infrastructure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-notes-page-showing-highlights-changelog-etc-for-each-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      Release Notes page showing Highlights, Changelog etc for each release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#developer-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Developer Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-method-level-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      API (Method) level details
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deployment/UseCaseDiagrams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Eclipse CSP Use Cases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deployment/Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    How to Deploy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Development
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="build/build_guidelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Offboard Server Build
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="build/device-client-build_guidelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Onboard Device Client Build
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="build/mobile-app-build_guidelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mobile Application Build
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="build/libraries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Libraries Build
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="build/components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Components Build
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Diagram
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagram Details
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagram Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#offboard-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Offboard Layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Offboard Layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uxmobile-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      UX/Mobile SDK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Business Application
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-platform-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Platform Services
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abstraction-data-handling-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Abstraction &amp; Data Handling Service
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Abstraction &amp; Data Handling Service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-abstraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Abstraction
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud-its-infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud &amp; its Infrastructure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cloud &amp; its Infrastructure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Stream
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backend Interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infra-and-cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Infra and CI/CD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboard-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Onboard Layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Onboard Layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#device-its-infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Device &amp; its Infrastructure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-notes-page-showing-highlights-changelog-etc-for-each-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      Release Notes page showing Highlights, Changelog etc for each release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#developer-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Developer Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-method-level-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      API (Method) level details
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="csp-documentation">CSP-Documentation<a class="headerlink" href="#csp-documentation" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>Eclipse Connected Services Platform (CSP) offers a comprehensive platform with all the essential components needed by automotive OEMs to develop end-to-end connected vehicle software solutions. The Eclipse CSP provides functionalities for data management, vehicle management (profiles, devices, settings), user access control, notification channels, vehicle client, and integration with various open-source softwares.
+Eclipse CSP binds together Cloud Computing Framework with platform for connecting vehicle and Reference Mobile Application.
+Built on a microservices architecture, the Eclipse CSP enables modular development and deployment. It provides a Multi-layered Architecture for faster development, improved scalability, separation of concerns and enhanced maintainability.
+In addition to the core Eclipse CSP platform, the offering includes a reference application (Remote Operations) on the Cloud, a device client for embedded devices (IVI/ECU/TCU) on vehicles, a vehicle simulator which simulates device client present on vehicle which connects to cloud over MQTT, and a reference mobile application (iOS/Android). These components demonstrate the process of building new automotive services on this platform. By leveraging the data collected from the vehicles, the Eclipse CSP aims to foster a community that creates novel applications and services.
+This platform is designed for scalability to connect large vehicle fleets with single-click deployment scripts that streamline setup and validation.</p>
+<p>Eclipse CSP documentation is stored in GitHub at the following location: <a href="https://github.com/eclipse-ecsp/ecsp-website">https://github.com/eclipse-ecsp/ecsp-website</a></p>
+<h3 id="system-diagram">System Diagram<a class="headerlink" href="#system-diagram" title="Permanent link">&para;</a></h3>
+<p><a class="glightbox" href="images/OSSECSPBlockDiagram.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="ECSP Block Diagram" src="images/OSSECSPBlockDiagram.png" /></a></p>
+<h3 id="diagram-details">Diagram Details<a class="headerlink" href="#diagram-details" title="Permanent link">&para;</a></h3>
+<h4 id="offboard-layer">Offboard Layer<a class="headerlink" href="#offboard-layer" title="Permanent link">&para;</a></h4>
+<h5 id="uxmobile-sdk">UX/Mobile SDK<a class="headerlink" href="#uxmobile-sdk" title="Permanent link">&para;</a></h5>
+<ul>
+<li><strong>IOS &amp; Andriod Mobile Reference App</strong> - Reference mobile apps on IOS and Android to provide insights on usage of feature specific api to perform operations from mobile by user. example: Remotely lock / unlock door of a car from mobile app.</li>
+<li><strong>IOS and Android Mobile SDK</strong> - Provides an API interface for Remote Operation and User Authentication. Remote operations mobile apps can be designed by using the VehicleConnectSDK</li>
+</ul>
+<h5 id="business-application">Business Application<a class="headerlink" href="#business-application" title="Permanent link">&para;</a></h5>
+<ul>
+<li><a href="#available-soon"><strong>Reference App Remote Operations</strong></a> - Application for vehicles to control door, window, lights, horn, alarm, trunk, and demonstrate how new services can be written using the core platform layer.</li>
+</ul>
+<h5 id="core-platform-services">Core Platform Services<a class="headerlink" href="#core-platform-services" title="Permanent link">&para;</a></h5>
+<ul>
+<li><a href="#available-soon"><strong>Vehicle Profile</strong></a> -  Responsible for creating and maintaining a profile of each vehicle that is on-boarded to the platform. It holds vehicle-specific details and device details (ECUs/IVI/HU) installed on a vehicle, along with capabilities and services provisioned for a vehicle/device combination.</li>
+<li><a href="https://github.com/eclipse-ecsp/uidam-authorization-server"><strong>User Identity and Access Management (UIDAM)</strong></a> - IDAM Service(s) for OAuth2 implementation</li>
+<li><a href="#available-soon"><strong>Device Message</strong></a> - Responsible for sending the configuration to the device whenever there is an update in the configuration. Internal service calls the Device Message API to initiate sending the configuration. The Device Message component sends the configuration to the device using an MQTT channel and the configuration is saved in the Device Shadow collection database. The device client can later retrieve the latest configuration by calling the Device Shadow API also.</li>
+<li><a href="#available-soon"><strong>Device Association</strong></a> - Associate a device to the user</li>
+<li><a href="#available-soon"><strong>Device Activation</strong></a> - Move the device into associated state and send a request to create Vehicle Profile</li>
+<li><a href="#available-soon"><strong>Device Factory</strong></a> - Admin user will manually request to create a new device with required attributes for each vehicle</li>
+</ul>
+<h5 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h5>
+<ul>
+<li><strong>Kubernetes Secrets</strong> - A Kubernetes secret is an object that stores sensitive data, such as passwords, tokens, and keys. This data is used to authenticate and authorize access to applications and services.</li>
+<li><strong>Eclipse Dash</strong> - Eclipse Dash is a place where the community itself collaborates on tools for community awareness and collaboration in support of our ultimate objective of committer quality and cooperation.</li>
+</ul>
+<h5 id="abstraction-data-handling-service">Abstraction &amp; Data Handling Service<a class="headerlink" href="#abstraction-data-handling-service" title="Permanent link">&para;</a></h5>
+<ul>
+<li><strong>Java</strong> - Java is a programming language and computing platform that's used to create applications for many devices, including smartphones, servers, and the web</li>
+<li><strong>Node JS</strong> - Node.js is an open-source, cross-platform JavaScript runtime environment that executes JavaScript code outside of a web browser.</li>
+<li><strong>Python</strong> - Python is a programming language that is used for web development, software development, data science, and machine learning.</li>
+<li><strong>Stream Processor</strong> - A Kafka streams based backend application which processes the real time data coming from vehicle.</li>
+<li><a href="#available-soon"><strong>API Common</strong></a> - represent a set of common services that provide a foundation for flexibility and rapid service creation. It exposes common REST based tasks related to health monitors, metrics, JSON support functions and push message to Kafka cluster etc</li>
+<li><a href="https://github.com/eclipse-ecsp/entities"><strong>Entities</strong></a> - Provides abstraction for event specifications and centralises common entities. Provides support for related commmon functionalities like Serialization, Automatic auditing of entities, retries, event lifecycle hooks and mappings</li>
+<li><a href="https://github.com/eclipse-ecsp/utils"><strong>Utils</strong></a> - Provides Utility functionality such as centralized logging, health checks, diagnostic data reporting and application metrics such as counters, gauges and histograms</li>
+<li><a href="#available-soon"><strong>MQTT Interface (HiveMQ)</strong></a> - Supported lightweight MQTT Broker apt for IOT data communication</li>
+<li><strong>Transformation</strong>  - Provides generic functionality to transform the external client related events to those required  for backend  processing</li>
+</ul>
+<h6 id="data-abstraction">Data Abstraction<a class="headerlink" href="#data-abstraction" title="Permanent link">&para;</a></h6>
+<ul>
+<li><a href="https://github.com/eclipse-ecsp/sql-dao"><strong>SQL DAO</strong></a> - Data Access Layer abstracting the RDBMS (Postgres) operations</li>
+<li><a href="https://github.com/eclipse-ecsp/nosql-dao"><strong>NOSQL DAO</strong></a> - Data Access Layer abstracting the NoSQL MongoDB operations using Morphia as Object Document Mapper</li>
+<li><strong>Cache Library</strong> - Abstraction library for interfacing with Redis Cache</li>
+</ul>
+<h5 id="cloud-its-infrastructure">Cloud &amp; its Infrastructure<a class="headerlink" href="#cloud-its-infrastructure" title="Permanent link">&para;</a></h5>
+<h6 id="data-stream">Data Stream<a class="headerlink" href="#data-stream" title="Permanent link">&para;</a></h6>
+<ul>
+<li><strong>Kafka</strong> - Real-time streaming data pipelines that reliably get data between devices and services. Kafka is used in Connected services platform backend for inter service communication. Zookeeper is a centralized service for maintaining configuration information and providing distributed synchronization for services</li>
+<li><a href="#available-soon"><strong>HiveMQ</strong></a> - Connected services platform uses HiveMQ broker to communicate with vehicles for all V2C and C2V use cases.</li>
+</ul>
+<h6 id="backend-interface">Backend Interface<a class="headerlink" href="#backend-interface" title="Permanent link">&para;</a></h6>
+<ul>
+<li><a href="https://github.com/eclipse-ecsp/api-gateway"><strong>API Gateway (Spring Cloud Gateway)</strong></a> - Exposes business APIs that are being consumed by applications, mobile apps, web portals and third parties.</li>
+</ul>
+<h6 id="database">Database<a class="headerlink" href="#database" title="Permanent link">&para;</a></h6>
+<ul>
+<li><strong>PostgreSQL</strong> - Postgres is used as a database for CSP components like User Identity Management and Api-Gateway.  </li>
+<li><strong>Redis</strong> - Redis is used as a cache in CSP to store details that need quick access to micro services.</li>
+<li><strong>MongoDB</strong> - MongoDB is used to store service/feature specific event data coming from vehicles to cloud.</li>
+</ul>
+<h6 id="infra-and-cicd">Infra and CI/CD<a class="headerlink" href="#infra-and-cicd" title="Permanent link">&para;</a></h6>
+<ul>
+<li><strong>Kubernetes</strong> - Kubernetes is open-source software that helps you manage, scale, and deploy containerized applications. It's also known as "k8s" or "k-eights".</li>
+<li><strong>Terraform</strong> - Terraform is an infrastructure as code tool that lets you define both cloud and on-prem resources in human-readable configuration files that you can version, reuse, and share.</li>
+<li><strong>Docker</strong> - Docker helps developers build, share, run, and verify applications anywhere — without tedious environment configuration or management.</li>
+<li><strong>Helm</strong> - Helm is a package manager for Kubernetes, simplifying the deployment, management, and lifecycle of applications on Kubernetes clusters, by packaging them into "charts" which are then deployed using the Helm CLI.</li>
+<li><strong>Argo CD</strong> - Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes that uses Git repositories as the source of truth for defining application state and automates deployments</li>
+<li><strong>GitHub</strong> - GitHub is a website that helps users manage and share code using the open-source version control tool Git.</li>
+</ul>
+<h6 id="observability">Observability<a class="headerlink" href="#observability" title="Permanent link">&para;</a></h6>
+<ul>
+<li><strong>Grafana</strong> - Dashboards to show memory usage, cpu usage of microservices.</li>
+<li><strong>Prometheus</strong> - Prometheus is an open-source systems monitoring and alerting toolkit that collects and stores metrics as time series data.</li>
+<li><strong>Graylog</strong> - Graylog is a powerful, open-source log management tool that centralizes, indexes, and analyzes log data from various sources.</li>
+</ul>
+<h6 id="cloud">Cloud<a class="headerlink" href="#cloud" title="Permanent link">&para;</a></h6>
+<ul>
+<li><strong>AWS</strong> - Cloud infra that hosts CSP microservices</li>
+</ul>
+<h4 id="onboard-layer">Onboard Layer<a class="headerlink" href="#onboard-layer" title="Permanent link">&para;</a></h4>
+<h5 id="device-its-infrastructure">Device &amp; its Infrastructure<a class="headerlink" href="#device-its-infrastructure" title="Permanent link">&para;</a></h5>
+<ul>
+<li><a href="https://github.com/eclipse-ecsp/device-client"><strong>Device Client</strong></a> - A C++ Client, ready to be deployed on TCUs/ECUs/IVI to validate the RO application use case. Vehicles (using a Device client paho/MQTT) transmit data using a lightweight MQTT protocol, minimizing data overhead and optimizing bandwidth usage.</li>
+<li><strong>Edge Algorithm</strong> - The logic present at vehcile(device), which converts raw data to necessary format understood by cloud and which sends the data to cloud through predefined protocol (MQTT)</li>
+<li><strong>Vehicle Simulator</strong> -  A Linux-based vehicle simulator capable of simulating vehicle messages or receiving and responding to messages from a Cloud application. This is provided for testing and development purposes.</li>
+</ul>
+<h3 id="release-notes-page-showing-highlights-changelog-etc-for-each-release">Release Notes page showing Highlights, Changelog etc for each release<a class="headerlink" href="#release-notes-page-showing-highlights-changelog-etc-for-each-release" title="Permanent link">&para;</a></h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<a href="release/release_notes_guidelines/">Release Notes</a></p>
+<h3 id="developer-guidelines">Developer Guidelines<a class="headerlink" href="#developer-guidelines" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>To build the project from source code</strong><br />
+<a href="build/build_guidelines/">Build Guidelines</a></p>
+</li>
+<li>
+<p><strong>Installation Guide</strong><br />
+<a href="deployment/">Installation Guide</a></p>
+</li>
+</ul>
+<h3 id="api-method-level-details">API (Method) level details<a class="headerlink" href="#api-method-level-details" title="Permanent link">&para;</a></h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<a href="api-def/api-static-swagger.html">API Details</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
