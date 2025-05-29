@@ -120,6 +120,8 @@ hide:
     - Notification Service then forwards the PUSH notification to the mobile app for intimation of Remote Operation status to user. 
     - Mobile app displays the Remote Operation Completed.
 
+    **Note**: PUSH notifications for Remote Operation response is currently not supported and will be enabled in subsequent releases.
+
     ## Remote Operation Request Flow
 
     ![Remote Operations Response Flow](images/ro-request-flow.svg)
@@ -145,6 +147,8 @@ hide:
     - Remote Operation service receives remote operation response then validates if the vehicle is active with user and sends notification to the app.
     - Notification Center service receives RO response event and then it triggers PUSH notificaiton to the mobile app.
     - Finally Mobile app receives notification about the remote operation response.
+
+    **Note**: PUSH notifications for Remote Operation response is currently not supported and will be enabled in subsequent releases.
 
     ## Remote Operations Error Flow
 
